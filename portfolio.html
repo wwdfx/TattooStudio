@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - InkMaster Studio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>InkMaster Studio</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html" class="active">Portfolio</a></li>
+                    <li><a href="booking.html">Book Appointment</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="#" id="login-btn" class="btn-login">Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Our Portfolio</h1>
+            <p>Explore our artists' work and find inspiration for your next tattoo</p>
+        </div>
+    </section>
+
+    <section class="portfolio-filters">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <label for="style-filter">Style:</label>
+                    <select id="style-filter">
+                        <option value="all">All Styles</option>
+                        <option value="traditional">Traditional</option>
+                        <option value="neo-traditional">Neo-Traditional</option>
+                        <option value="realism">Realism</option>
+                        <option value="watercolor">Watercolor</option>
+                        <option value="geometric">Geometric</option>
+                        <option value="tribal">Tribal</option>
+                        <option value="japanese">Japanese</option>
+                        <option value="blackwork">Blackwork</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="artist-filter">Artist:</label>
+                    <select id="artist-filter">
+                        <option value="all">All Artists</option>
+                        <!-- Artists will be loaded dynamically -->
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="search-filter">Search:</label>
+                    <input type="text" id="search-filter" placeholder="Keywords...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-gallery">
+        <div class="container">
+            <div class="gallery-grid" id="portfolio-container">
+                <!-- Portfolio items will be loaded dynamically from Supabase -->
+                <div class="gallery-item skeleton"></div>
+                <div class="gallery-item skeleton"></div>
+                <div class="gallery-item skeleton"></div>
+                <div class="gallery-item skeleton"></div>
+                <div class="gallery-item skeleton"></div>
+                <div class="gallery-item skeleton"></div>
+                <div class="gallery-item skeleton"></div>
+                <div class="gallery-item skeleton"></div>
+            </div>
+            <div class="pagination" id="portfolio-pagination">
+                <!-- Pagination will be generated dynamically -->
+                <button class="pagination-btn" disabled>Previous</button>
+                <div class="pagination-numbers">
+                    <span class="pagination-number active">1</span>
+                </div>
+                <button class="pagination-btn">Next</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Get Inked?</h2>
+                <p>Book your appointment today and bring your vision to life</p>
+                <a href="booking.html" class="btn-primary">Book Now</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>InkMaster Studio</h2>
+                    <p>Express yourself through art</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="booking.html">Book Appointment</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 InkMaster Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Portfolio Item Modal -->
+    <div class="modal" id="portfolio-modal">
+        <div class="modal-content portfolio-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="portfolio-modal-container">
+                <div class="portfolio-modal-image">
+                    <img src="" alt="Tattoo artwork" id="modal-image">
+                </div>
+                <div class="portfolio-modal-details">
+                    <h2 id="modal-title"></h2>
+                    <p class="modal-artist">Artist: <span id="modal-artist"></span></p>
+                    <p class="modal-style">Style: <span id="modal-style"></span></p>
+                    <p class="modal-description" id="modal-description"></p>
+                    <div class="modal-actions">
+                        <a href="booking.html" class="btn-primary">Book This Artist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            <div class="auth-form-container">
+                <form id="login-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="form-message"></p>
+                </form>
+                <form id="signup-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                    <p class="form-message"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/portfolio.js"></script>
+</body>
+</html>

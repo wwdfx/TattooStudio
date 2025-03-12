@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - InkMaster Studio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>InkMaster Studio</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="booking.html" class="active">Book Appointment</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li><a href="#" id="login-btn" class="btn-login">Login</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Book Your Appointment</h1>
+            <p>Schedule a session with one of our talented artists</p>
+        </div>
+    </section>
+
+    <section class="booking-process">
+        <div class="container">
+            <div class="booking-steps">
+                <div class="booking-step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-text">Select Artist</div>
+                </div>
+                <div class="booking-step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-text">Choose Service</div>
+                </div>
+                <div class="booking-step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-text">Select Date & Time</div>
+                </div>
+                <div class="booking-step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-text">Your Details</div>
+                </div>
+                <div class="booking-step" data-step="5">
+                    <div class="step-number">5</div>
+                    <div class="step-text">Confirmation</div>
+                </div>
+            </div>
+
+            <div class="booking-form-container">
+                <!-- Step 1: Select Artist -->
+                <div class="booking-form active" id="booking-step-1">
+                    <h2>Select an Artist</h2>
+                    <p class="booking-instruction">Choose the artist you'd like to work with</p>
+                    
+                    <div class="artists-grid" id="booking-artists-container">
+                        <!-- Artists will be loaded dynamically from Supabase -->
+                        <div class="artist-card skeleton"></div>
+                        <div class="artist-card skeleton"></div>
+                        <div class="artist-card skeleton"></div>
+                        <div class="artist-card skeleton"></div>
+                    </div>
+                    
+                    <div class="booking-navigation">
+                        <button class="btn-secondary" id="step-1-back" disabled>Back</button>
+                        <button class="btn-primary" id="step-1-next" disabled>Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Choose Service -->
+                <div class="booking-form" id="booking-step-2">
+                    <h2>Choose a Service</h2>
+                    <p class="booking-instruction">Select the type of service you're looking for</p>
+                    
+                    <div class="service-selection">
+                        <div class="service-option">
+                            <input type="radio" name="service" id="service-consultation" value="consultation">
+                            <label for="service-consultation">
+                                <div class="service-icon"><i class="fas fa-comments"></i></div>
+                                <div class="service-details">
+                                    <h3>Consultation</h3>
+                                    <p>Discuss your ideas with the artist (30 min)</p>
+                                    <span class="service-price">Free</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-option">
+                            <input type="radio" name="service" id="service-small" value="small">
+                            <label for="service-small">
+                                <div class="service-icon"><i class="fas fa-pen-fancy"></i></div>
+                                <div class="service-details">
+                                    <h3>Small Tattoo</h3>
+                                    <p>Simple design, up to 2 inches (1-2 hours)</p>
+                                    <span class="service-price">$80-150</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-option">
+                            <input type="radio" name="service" id="service-medium" value="medium">
+                            <label for="service-medium">
+                                <div class="service-icon"><i class="fas fa-pen-nib"></i></div>
+                                <div class="service-details">
+                                    <h3>Medium Tattoo</h3>
+                                    <p>Detailed design, 2-5 inches (2-4 hours)</p>
+                                    <span class="service-price">$150-300</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-option">
+                            <input type="radio" name="service" id="service-large" value="large">
+                            <label for="service-large">
+                                <div class="service-icon"><i class="fas fa-paint-brush"></i></div>
+                                <div class="service-details">
+                                    <h3>Large Tattoo</h3>
+                                    <p>Complex design, 5+ inches (4+ hours)</p>
+                                    <span class="service-price">$300+</span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="service-option">
+                            <input type="radio" name="service" id="service-custom" value="custom">
+                            <label for="service-custom">
+                                <div class="service-icon"><i class="fas fa-palette"></i></div>
+                                <div class="service-details">
+                                    <h3>Custom Project</h3>
+                                    <p>Full sleeve, back piece, or custom project</p>
+                                    <span class="service-price">Custom Quote</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="custom-description-container" style="display: none;">
+                        <label for="custom-description">Describe your custom project:</label>
+                        <textarea id="custom-description" rows="4" placeholder="Please provide details about your tattoo idea, size, placement, etc."></textarea>
+                    </div>
+                    
+                    <div class="booking-navigation">
+                        <button class="btn-secondary" id="step-2-back">Back</button>
+                        <button class="btn-primary" id="step-2-next" disabled>Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Select Date & Time -->
+                <div class="booking-form" id="booking-step-3">
+                    <h2>Select Date & Time</h2>
+                    <p class="booking-instruction">Choose your preferred appointment date and time</p>
+                    
+                    <div class="date-time-selection">
+                        <div class="form-group">
+                            <label for="appointment-date">Date:</label>
+                            <input type="text" id="appointment-date" placeholder="Select a date" readonly>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Available Time Slots:</label>
+                            <div class="time-slots" id="time-slots-container">
+                                <!-- Time slots will be loaded dynamically based on selected date -->
+                                <p class="no-slots-message">Please select a date to see available time slots</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-navigation">
+                        <button class="btn-secondary" id="step-3-back">Back</button>
+                        <button class="btn-primary" id="step-3-next" disabled>Next</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Your Details -->
+                <div class="booking-form" id="booking-step-4">
+                    <h2>Your Details</h2>
+                    <p class="booking-instruction">Please provide your information</p>
+                    
+                    <div class="user-details-form">
+                        <div class="form-group">
+                            <label for="client-name">Full Name:</label>
+                            <input type="text" id="client-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="client-email">Email:</label>
+                            <input type="email" id="client-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="client-phone">Phone:</label>
+                            <input type="tel" id="client-phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="tattoo-description">Tattoo Description:</label>
+                            <textarea id="tattoo-description" rows="4" placeholder="Please describe your tattoo idea, including size, placement, and any reference images"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="reference-images">Reference Images (optional):</label>
+                            <input type="file" id="reference-images" multiple accept="image/*">
+                            <div class="reference-images-preview" id="reference-images-preview"></div>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="first-tattoo">
+                            <label for="first-tattoo">This is my first tattoo</label>
+                        </div>
+                        
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="terms-conditions" required>
+                            <label for="terms-conditions">I agree to the <a href="#" id="terms-link">terms and conditions</a></label>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-navigation">
+                        <button class="btn-secondary" id="step-4-back">Back</button>
+                        <button class="btn-primary" id="step-4-next" disabled>Review Booking</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Confirmation -->
+                <div class="booking-form" id="booking-step-5">
+                    <h2>Booking Summary</h2>
+                    <p class="booking-instruction">Please review your booking details</p>
+                    
+                    <div class="booking-summary">
+                        <div class="summary-section">
+                            <h3>Selected Artist</h3>
+                            <div class="summary-artist" id="summary-artist">
+                                <!-- Artist details will be populated dynamically -->
+                            </div>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h3>Service Details</h3>
+                            <div class="summary-details">
+                                <p><strong>Service:</strong> <span id="summary-service"></span></p>
+                                <p><strong>Date:</strong> <span id="summary-date"></span></p>
+                                <p><strong>Time:</strong> <span id="summary-time"></span></p>
+                                <p><strong>Estimated Price:</strong> <span id="summary-price"></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-section">
+                            <h3>Your Information</h3>
+                            <div class="summary-details">
+                                <p><strong>Name:</strong> <span id="summary-name"></span></p>
+                                <p><strong>Email:</strong> <span id="summary-email"></span></p>
+                                <p><strong>Phone:</strong> <span id="summary-phone"></span></p>
+                                <p><strong>Tattoo Description:</strong> <span id="summary-description"></span></p>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-section" id="summary-images-section">
+                            <h3>Reference Images</h3>
+                            <div class="summary-images" id="summary-images">
+                                <!-- Reference images will be displayed here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="booking-navigation">
+                        <button class="btn-secondary" id="step-5-back">Back</button>
+                        <button class="btn-primary" id="confirm-booking">Confirm Booking</button>
+                    </div>
+                </div>
+
+                <!-- Booking Confirmation -->
+                <div class="booking-form" id="booking-confirmation">
+                    <div class="confirmation-content">
+                        <div class="confirmation-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Booking Confirmed!</h2>
+                        <p>Your appointment has been successfully booked.</p>
+                        <div class="confirmation-details">
+                            <p>Booking Reference: <span id="booking-reference"></span></p>
+                            <p>A confirmation email has been sent to <span id="confirmation-email"></span></p>
+                        </div>
+                        <p class="confirmation-note">Please arrive 15 minutes before your appointment time. If you need to reschedule or cancel, please contact us at least 24 hours in advance.</p>
+                        <div class="confirmation-actions">
+                            <a href="index.html" class="btn-secondary">Return to Home</a>
+                            <a href="#" id="add-to-calendar" class="btn-primary">Add to Calendar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="booking-info">
+        <div class="container">
+            <div class="info-cards">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                    <h3>First Time?</h3>
+                    <p>If this is your first tattoo, we recommend scheduling a consultation first to discuss your ideas with the artist.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Deposit Required</h3>
+                    <p>A non-refundable deposit of $50 is required to secure your appointment, which will be applied to your final tattoo cost.</p>
+                </div>
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Cancellation Policy</h3>
+                    <p>Please provide at least 24 hours notice for cancellations or rescheduling to avoid losing your deposit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>InkMaster Studio</h2>
+                    <p>Express yourself through art</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="booking.html">Book Appointment</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 InkMaster Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Terms and Conditions Modal -->
+    <div class="modal" id="terms-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Terms and Conditions</h2>
+            <div class="terms-content">
+                <h3>Booking and Deposits</h3>
+                <p>A non-refundable deposit of $50 is required to secure your appointment. This deposit will be applied to your final tattoo cost.</p>
+                
+                <h3>Cancellation Policy</h3>
+                <p>Please provide at least 24 hours notice for cancellations or rescheduling. Failure to do so will result in the loss of your deposit.</p>
+                
+                <h3>Age Requirements</h3>
+                <p>You must be 18 years or older to get a tattoo. Valid ID will be required at your appointment.</p>
+                
+                <h3>Health Considerations</h3>
+                <p>Please inform us of any medical conditions, allergies, or medications that may affect your tattoo. We reserve the right to refuse service if we believe a tattoo may pose a health risk.</p>
+                
+                <h3>Aftercare</h3>
+                <p>Proper aftercare is essential for the healing of your tattoo. We will provide detailed aftercare instructions, and it is your responsibility to follow them.</p>
+                
+                <h3>Pricing</h3>
+                <p>The prices listed are estimates. Final pricing will be determined by the artist based on the size, complexity, and placement of your tattoo.</p>
+                
+                <h3>Touch-Ups</h3>
+                <p>We offer free touch-ups within 3 months of your original appointment, provided you have followed the aftercare instructions.</p>
+            </div>
+            <button class="btn-primary" id="accept-terms">I Accept</button>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div class="modal" id="auth-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Login</button>
+                <button class="auth-tab" data-tab="signup">Sign Up</button>
+            </div>
+            <div class="auth-form-container">
+                <form id="login-form" class="auth-form active">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Login</button>
+                    <p class="form-message"></p>
+                </form>
+                <form id="signup-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="signup-name">Full Name</label>
+                        <input type="text" id="signup-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm-password">Confirm Password</label>
+                        <input type="password" id="signup-confirm-password" required>
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                    <p class="form-message"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>

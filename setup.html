@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setup - InkMaster Studio</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .setup-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: var(--light);
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .setup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .setup-header h1 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .setup-header p {
+            color: var(--secondary);
+        }
+        
+        .setup-section {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .setup-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .setup-section h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .setup-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .setup-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: var(--accent);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+        }
+        
+        .setup-button:hover {
+            background-color: #d67548;
+        }
+        
+        .setup-button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .setup-button i {
+            font-size: 1.2rem;
+        }
+        
+        .setup-status {
+            margin-top: 1rem;
+            padding: 1rem;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+        }
+        
+        .setup-status.success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .setup-status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        
+        .setup-status.warning {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        .setup-status.info {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+        
+        .setup-log {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-family: monospace;
+            max-height: 200px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+        }
+        
+        .setup-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+        
+        .setup-table th, .setup-table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .setup-table th {
+            background-color: #f8f9fa;
+            font-weight: 600;
+        }
+        
+        .setup-progress {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .setup-progress-bar {
+            flex: 1;
+            height: 8px;
+            background-color: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        
+        .setup-progress-fill {
+            height: 100%;
+            background-color: var(--accent);
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .setup-progress-text {
+            margin-left: 1rem;
+            font-weight: 600;
+            min-width: 60px;
+        }
+        
+        .setup-sample-data {
+            margin-top: 1rem;
+        }
+        
+        .setup-sample-data-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+        }
+        
+        .setup-sample-data-toggle input {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>InkMaster Studio</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="booking.html">Book Appointment</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="container">
+            <h1>Database Setup</h1>
+            <p>Initialize and configure the InkMaster Studio database</p>
+        </div>
+    </section>
+
+    <section class="setup-container">
+        <div class="setup-header">
+            <h1>InkMaster Studio Setup</h1>
+            <p>This page will help you set up the database for the InkMaster Studio application.</p>
+        </div>
+
+        <div class="setup-section">
+            <h2>Database Connection</h2>
+            <p>The application is configured to use Supabase as the backend database.</p>
+            <div class="setup-status info">
+                <p><strong>Supabase Configuration:</strong></p>
+                <p>URL: <code>https://uhqersobdtbbbkneyqwi.supabase.co</code></p>
+                <p>Anon Key: <code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVocWVyc29iZHRiYmJrbmV5cXdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3NzIwMzAsImV4cCI6MjA1NzM0ODAzMH0.-80xZUsbA5jmQO9U1RuBygBleShVZm1WN91vD8ji98I</code></p>
+            </div>
+            <div id="connection-status" class="setup-status">
+                <p>Checking connection status...</p>
+            </div>
+        </div>
+
+        <div class="setup-section">
+            <h2>Database Initialization</h2>
+            <p>Click the button below to create the required database tables for the application.</p>
+            <div class="setup-sample-data">
+                <label class="setup-sample-data-toggle">
+                    <input type="checkbox" id="include-sample-data" checked>
+                    <span>Include sample data (recommended for testing)</span>
+                </label>
+            </div>
+            <div class="setup-actions">
+                <button id="init-database" class="setup-button">
+                    <i class="fas fa-database"></i>
+                    Initialize Database
+                </button>
+            </div>
+            <div id="init-status" class="setup-status" style="display: none;"></div>
+            <div class="setup-progress" style="display: none;" id="setup-progress">
+                <div class="setup-progress-bar">
+                    <div class="setup-progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="setup-progress-text" id="progress-text">0%</div>
+            </div>
+            <div id="setup-log" class="setup-log" style="display: none;"></div>
+        </div>
+
+        <div class="setup-section">
+            <h2>Database Tables</h2>
+            <p>The following tables will be created in the database:</p>
+            <table class="setup-table">
+                <thead>
+                    <tr>
+                        <th>Table Name</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>clients</td>
+                        <td>Customer information</td>
+                        <td id="clients-status">Not created</td>
+                    </tr>
+                    <tr>
+                        <td>artists</td>
+                        <td>Tattoo artist profiles</td>
+                        <td id="artists-status">Not created</td>
+                    </tr>
+                    <tr>
+                        <td>appointments</td>
+                        <td>Booking details</td>
+                        <td id="appointments-status">Not created</td>
+                    </tr>
+                    <tr>
+                        <td>portfolio_items</td>
+                        <td>Gallery of tattoo work</td>
+                        <td id="portfolio-items-status">Not created</td>
+                    </tr>
+                    <tr>
+                        <td>admin_users</td>
+                        <td>Admin access management</td>
+                        <td id="admin-users-status">Not created</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="setup-section">
+            <h2>Next Steps</h2>
+            <p>After initializing the database, you can:</p>
+            <ul>
+                <li>Return to the <a href="index.html">homepage</a> to explore the application</li>
+                <li>Visit the <a href="portfolio.html">portfolio</a> to see artist work</li>
+                <li>Try <a href="booking.html">booking an appointment</a> with one of the artists</li>
+                <li>Access the <a href="admin/dashboard.html">admin dashboard</a> (requires admin access)</li>
+            </ul>
+            <div class="setup-actions">
+                <a href="index.html" class="setup-button">
+                    <i class="fas fa-home"></i>
+                    Go to Homepage
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>InkMaster Studio</h2>
+                    <p>Express yourself through art</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="booking.html">Book Appointment</a></li>
+                        <li><a href="index.html#about">About Us</a></li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Your email address" required>
+                        <button type="submit" class="btn-primary">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 InkMaster Studio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/supabase-config.js"></script>
+    <script src="js/db-setup.js"></script>
+</body>
+</html>

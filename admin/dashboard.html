@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - InkMaster Studio</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body class="admin-body">
+    <div class="admin-container">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>InkMaster</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active">
+                        <a href="dashboard.html">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="appointments.html">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Appointments</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="clients.html">
+                            <i class="fas fa-users"></i>
+                            <span>Clients</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="artists.html">
+                            <i class="fas fa-paint-brush"></i>
+                            <span>Artists</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="portfolio.html">
+                            <i class="fas fa-images"></i>
+                            <span>Portfolio</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="../index.html" class="view-site">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span>View Site</span>
+                </a>
+                <a href="#" id="admin-logout" class="logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-search">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Search...">
+                </div>
+                <div class="header-actions">
+                    <div class="notifications">
+                        <i class="fas fa-bell"></i>
+                        <span class="notification-badge">3</span>
+                    </div>
+                    <div class="admin-profile">
+                        <img src="../images/admin-avatar.jpg" alt="Admin" class="admin-avatar" id="admin-avatar">
+                        <span id="admin-name">Admin User</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <div class="page-header">
+                    <h1>Dashboard</h1>
+                    <p>Welcome to the InkMaster Studio admin panel</p>
+                </div>
+
+                <div class="dashboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Today's Appointments</h3>
+                            <p class="stat-number" id="today-appointments">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Total Clients</h3>
+                            <p class="stat-number" id="total-clients">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Active Artists</h3>
+                            <p class="stat-number" id="active-artists">0</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-dollar-sign"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3>Monthly Revenue</h3>
+                            <p class="stat-number" id="monthly-revenue">$0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-row">
+                    <div class="dashboard-card upcoming-appointments">
+                        <div class="card-header">
+                            <h2>Upcoming Appointments</h2>
+                            <a href="appointments.html" class="view-all">View All</a>
+                        </div>
+                        <div class="card-content">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Client</th>
+                                        <th>Artist</th>
+                                        <th>Service</th>
+                                        <th>Date & Time</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="upcoming-appointments-table">
+                                    <!-- Appointments will be loaded dynamically -->
+                                    <tr class="skeleton-row">
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                    </tr>
+                                    <tr class="skeleton-row">
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-row">
+                    <div class="dashboard-card recent-clients">
+                        <div class="card-header">
+                            <h2>Recent Clients</h2>
+                            <a href="clients.html" class="view-all">View All</a>
+                        </div>
+                        <div class="card-content">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Appointments</th>
+                                        <th>Joined</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="recent-clients-table">
+                                    <!-- Clients will be loaded dynamically -->
+                                    <tr class="skeleton-row">
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                    </tr>
+                                    <tr class="skeleton-row">
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                        <td><div class="skeleton-text"></div></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-row">
+                    <div class="dashboard-card artist-performance">
+                        <div class="card-header">
+                            <h2>Artist Performance</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="performance-chart" id="artist-performance-chart">
+                                <!-- Chart will be rendered here -->
+                                <div class="chart-placeholder">
+                                    <p>Loading chart data...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-card quick-actions">
+                        <div class="card-header">
+                            <h2>Quick Actions</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="action-buttons">
+                                <a href="appointments.html?new=true" class="action-button">
+                                    <i class="fas fa-calendar-plus"></i>
+                                    <span>New Appointment</span>
+                                </a>
+                                <a href="clients.html?new=true" class="action-button">
+                                    <i class="fas fa-user-plus"></i>
+                                    <span>Add Client</span>
+                                </a>
+                                <a href="artists.html?new=true" class="action-button">
+                                    <i class="fas fa-paint-brush"></i>
+                                    <span>Add Artist</span>
+                                </a>
+                                <a href="portfolio.html?new=true" class="action-button">
+                                    <i class="fas fa-image"></i>
+                                    <span>Add Portfolio Item</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Admin Profile Dropdown -->
+    <div class="dropdown-menu" id="admin-dropdown">
+        <ul>
+            <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            <li class="divider"></li>
+            <li><a href="#" id="admin-logout-dropdown"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Notification Dropdown -->
+    <div class="dropdown-menu" id="notification-dropdown">
+        <div class="dropdown-header">
+            <h3>Notifications</h3>
+            <a href="#" class="mark-all-read">Mark all as read</a>
+        </div>
+        <ul>
+            <li class="notification-item unread">
+                <div class="notification-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">New appointment booked with Alex Johnson</p>
+                    <p class="notification-time">10 minutes ago</p>
+                </div>
+            </li>
+            <li class="notification-item unread">
+                <div class="notification-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">New client registered: Sarah Williams</p>
+                    <p class="notification-time">1 hour ago</p>
+                </div>
+            </li>
+            <li class="notification-item">
+                <div class="notification-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="notification-content">
+                    <p class="notification-text">New review from Michael Brown</p>
+                    <p class="notification-time">Yesterday</p>
+                </div>
+            </li>
+        </ul>
+        <div class="dropdown-footer">
+            <a href="notifications.html">View all notifications</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/supabase-config.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>
