@@ -233,22 +233,22 @@
                         </div>
                         <div class="card-content">
                             <div class="action-buttons">
-                                <a href="appointments.html?new=true" class="action-button">
+                                <button onclick="handleQuickAction('appointment')" class="action-button">
                                     <i class="fas fa-calendar-plus"></i>
                                     <span>New Appointment</span>
-                                </a>
-                                <a href="clients.html?new=true" class="action-button">
+                                </button>
+                                <button onclick="handleQuickAction('client')" class="action-button">
                                     <i class="fas fa-user-plus"></i>
                                     <span>Add Client</span>
-                                </a>
-                                <a href="artists.html?new=true" class="action-button">
+                                </button>
+                                <button onclick="handleQuickAction('artist')" class="action-button">
                                     <i class="fas fa-paint-brush"></i>
                                     <span>Add Artist</span>
-                                </a>
-                                <a href="portfolio.html?new=true" class="action-button">
+                                </button>
+                                <button onclick="handleQuickAction('portfolio')" class="action-button">
                                     <i class="fas fa-image"></i>
                                     <span>Add Portfolio Item</span>
-                                </a>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -312,5 +312,6 @@
     <script src="../js/supabase-config.js"></script>
     <script src="../js/auth.js"></script>
     <script src="../js/admin.js"></script>
+    <script src="../js/admin-utils.js"></script>
 </body>
 </html>
