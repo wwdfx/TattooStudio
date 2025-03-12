@@ -1,5 +1,5 @@
 /**
- * InkMaster Studio - Tattoo Management System
+ * V.SHAI TATTOO - Tattoo Management System
  * Booking Page JavaScript
  */
 
@@ -634,10 +634,10 @@ document.addEventListener('DOMContentLoaded', () => {
         // Create calendar event details
         const eventDetails = {
             title: `Tattoo Appointment with ${bookingData.artist.name}`,
-            description: `Service: ${getServiceName(bookingData.service)}\nArtist: ${bookingData.artist.name}\nLocation: InkMaster Studio, 123 Ink Street, Tattoo City`,
+            description: `Service: ${getServiceName(bookingData.service)}\nArtist: ${bookingData.artist.name}\nLocation: V.SHAI TATTOO, 123 Ink Street, Tattoo City`,
             start: startDateString,
             end: endDateString,
-            location: 'InkMaster Studio, 123 Ink Street, Tattoo City'
+            location: 'V.SHAI TATTOO, 123 Ink Street, Tattoo City'
         };
         
         // Generate Google Calendar URL

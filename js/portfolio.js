@@ -1,5 +1,5 @@
 /**
- * InkMaster Studio - Tattoo Management System
+ * V.SHAI TATTOO - Tattoo Management System
  * Portfolio Page JavaScript
  */
 
