@@ -74,25 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageElement = loginForm.querySelector('.form-message');
             
             try {
-                const { data, error } = await supabase.auth.signInWithPassword({
+                const { data: authData, error: authError } = await supabase.auth.signInWithPassword({
                     email,
                     password
                 });
                 
-                if (error) throw error;
+                if (authError) throw authError;
+
+                // Check admin status using RPC call to is_admin function
+                const { data: adminCheck, error: adminError } = await supabase.rpc('is_admin');
                 
+                if (adminError) throw adminError;
+
                 messageElement.textContent = 'Login successful!';
                 messageElement.className = 'form-message success';
                 
-                // Check if user is admin
-                const isAdmin = await checkAdmin();
-                
-                // Redirect based on user role
+                // Redirect based on admin status
                 setTimeout(() => {
-                    if (isAdmin) {
+                    if (adminCheck === true) {
                         window.location.href = 'admin/dashboard.html';
                     } else {
-                        // Reload the current page
                         window.location.reload();
                     }
                 }, 1000);
@@ -257,10 +258,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Check if on admin page
             if (window.location.pathname.includes('/admin/')) {
-                const isAdmin = await checkAdmin();
+                // Check admin status using RPC call
+                const { data: isAdmin, error: adminError } = await supabase.rpc('is_admin');
                 
+                if (adminError) {
+                    console.error('Error checking admin status:', adminError);
+                    window.location.href = '../index.html';
+                    return;
+                }
+
                 if (!isAdmin) {
-                    // Redirect non-admin users
                     window.location.href = '../index.html';
                 } else {
                     // Update admin UI
@@ -302,3 +309,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 });
+
+// Update checkAdmin function to use RPC
+async function checkAdmin() {
+    try {
+        const { data: isAdmin, error } = await supabase.rpc('is_admin');
+        if (error) throw error;
+        return isAdmin;
+    } catch (error) {
+        console.error('Error checking admin status:', error);
+        return false;
+    }
+}
