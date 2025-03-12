@@ -8,11 +8,11 @@ const SUPABASE_URL = 'https://uhqersobdtbbbkneyqwi.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVocWVyc29iZHRiYmJrbmV5cXdpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE3NzIwMzAsImV4cCI6MjA1NzM0ODAzMH0.-80xZUsbA5jmQO9U1RuBygBleShVZm1WN91vD8ji98I';
 
 // Initialize Supabase client
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // Check if the user is logged in
 async function checkAuth() {
-    const { data: { user } } = await supabase.auth.getUser();
+    const { data: { user } } = await supabaseClient.auth.getUser();
     return user;
 }
 
@@ -23,7 +23,7 @@ async function checkAdmin() {
     if (!user) return false;
     
     // Check if the user is in the admin_users table
-    const { data, error } = await supabase
+    const { data, error } = await supabaseClient
         .from('admin_users')
         .select('*')
         .eq('email', user.email)
@@ -138,7 +138,7 @@ function lazyLoadImages() {
 
 // Export functions for use in other files
 window.supabaseConfig = {
-    supabase,
+    supabase: supabaseClient,
     checkAuth,
     checkAdmin,
     formatDate,
